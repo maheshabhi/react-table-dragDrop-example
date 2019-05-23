@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import './App.css';
 import TableCompnent from './components/table/Table.component';
 import HeaderComponent from './components/header.component';
+import DragDropComponent from './components/drag/DragDrop.component';
 
 class App extends React.Component {
     constructor(props) {
@@ -100,7 +101,8 @@ class App extends React.Component {
 
                         </div> */}
                         <div className="col-md-12">
-                            <TableCompnent data={this.state && this.state.data} columns={this.state.columns} />
+                            {/* <TableCompnent data={this.state && this.state.data} columns={this.state.columns} /> */}
+                            <DragDropComponent />
                         </div>
                     </div>
                 </div>
