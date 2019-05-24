@@ -11,7 +11,7 @@ class TableHeader extends React.Component {
                     )
                 })
         return (
-            <thead className="thead-dark"><tr>{rows}</tr></thead>
+            <thead className="thead-blue"><tr>{rows}</tr></thead>
         )
     }
 }

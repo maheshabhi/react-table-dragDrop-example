@@ -2,29 +2,34 @@ import React from 'react';
 import '@atlaskit/css-reset';
 import { DragDropContext } from 'react-beautiful-dnd';
 import styled from 'styled-components';
-
-import initialData from './initial-data'
-import Column from './column'
+import Column from './column';
 
 const Container = styled.div`
   display:flex;
 `
 
 class DragDropComponent extends React.Component {
-    state = initialData
+
+    constructor(props) {
+        // debugger;
+        super(props)
+        
+        console.log("activities data", this.props.activities);
+        
+    }
+
+    
+    state =  this.props.activities;
 
     onDragEnd = result => {
-        const { destination, source, draggableId } = result
+        const { destination, source, draggableId } = result;
 
         if (!destination) {
-        return
+            return;
         }
 
-        if (
-        destination.droppableId === source.droppableId &&
-        destination.index === source.index
-        ) {
-        return
+        if ( destination.droppableId === source.droppableId && destination.index === source.index) {
+            return;
         }
 
         const start = this.state.columns[source.droppableId]
@@ -43,59 +48,59 @@ class DragDropComponent extends React.Component {
             const newState = {
                 ...this.state,
                 columns: {
-                ...this.state.columns,
-                [newColumn.id]: newColumn
+                    ...this.state.columns,
+                    [newColumn.id]: newColumn
                 }
             }
 
             this.setState(newState)
-            return
+            return;
         }
 
         // Moving from one list to another
         const startTaskIds = Array.from(start.taskIds)
-        startTaskIds.splice(source.index, 1)
+        startTaskIds.splice(source.index, 1);
         const newStart = {
-        ...start,
-        taskIds: startTaskIds
+            ...start,
+            taskIds: startTaskIds
         }
 
         const finishTaskIds = Array.from(finish.taskIds)
-        finishTaskIds.splice(destination.index, 0, draggableId)
+        finishTaskIds.splice(destination.index, 0, draggableId);
         const newFinish = {
-        ...finish,
-        taskIds: finishTaskIds
+            ...finish,
+            taskIds: finishTaskIds
         }
 
         const newState = {
-        ...this.state,
-        columns: {
-            ...this.state.columns,
-            [newStart.id]: newStart,
-            [newFinish.id]: newFinish
-        }
+            ...this.state,
+            columns: {
+                ...this.state.columns,
+                [newStart.id]: newStart,
+                [newFinish.id]: newFinish
+            }
         }
         this.setState(newState)
     }
 
-  render() {
-    return (
-      <DragDropContext onDragEnd={this.onDragEnd}>
-        <Container>
-          {this.state.columnOrder.map(columnId => {
-            const column = this.state.columns[columnId]
-            const tasks = column.taskIds.map(
-              taskId => this.state.tasks[taskId]
-            )
+    render() {
+        return (
+            <DragDropContext onDragEnd={this.onDragEnd}>
+                <Container>
+                {this.state.columnOrder.map(columnId => {
+                    const column = this.state.columns[columnId];
+                    const tasks = column.taskIds.map(
+                        taskId => this.state.tasks[taskId]
+                    )
 
-            return (
-              <Column key={column.id} column={column} tasks={tasks} />
-            )
-          })}
-        </Container>
-      </DragDropContext>
-    )
-  }
+                    return (
+                        <Column key={column.id} column={column} tasks={tasks} />
+                    )
+                })}
+                </Container>
+            </DragDropContext>
+        )
+    }
 }
 
 export default DragDropComponent;
