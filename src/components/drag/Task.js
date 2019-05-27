@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Draggable } from 'react-beautiful-dnd'
-import LongText from './longText.component';
+// import LongText from './longText.component';
 
 const Container = styled.span`
   border: 1px solid lightgrey;
@@ -21,8 +21,8 @@ export default class Task extends React.Component {
 
     render() {
         
-        const limit = 10;
-        const isDragDisabled = this.props.task.id === 'task-1'
+        // const limit = 10;
+        // const isDragDisabled = this.props.task.id === 'task-1'
         return (
             <Draggable
                 draggableId={this.props.task.id}

@@ -1,9 +1,5 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
+import React from 'react';
 
-const Container = styled.div`
-
-`
 
 
 export default class FooterComponent extends React.Component {

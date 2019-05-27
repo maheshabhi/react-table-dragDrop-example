@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React  from 'react';
 import TableCompnent from './components/table/Table.component';
 import HeaderComponent from './components/header.component';
 import FooterComponent from './components/footer.component';
@@ -7,8 +7,11 @@ import FooterComponent from './components/footer.component';
 class App extends React.Component {
     constructor(props) {
         super(props)
+        // debugger;
+        console.log("updated props", props.location.formData)
         this.removeProject = this.removeProject.bind(this);
-
+        this.addProject = this.addProject.bind(this);
+        
         this.state = {
             data: [
                 {
@@ -18,10 +21,6 @@ class App extends React.Component {
                     "start_date": "4/11/2018",
                     "end_date": "1/1/2020",
                     "stage": "1",
-                    "dec_LTF_finish": "30/4/2020",
-                    "jan_LTF_finish": "30/4/2020",
-                    "jan_LTF_duration": "750",
-                    "current_LTF": "0",
                     "activities": {
                         tasks: {
                             'task-1': { id: 'task-1', content: 'Learn Angular' },
@@ -58,10 +57,6 @@ class App extends React.Component {
                     "start_date": "4/06/2018",
                     "end_date": "1/11/2019",
                     "stage": "3",
-                    "dec_LTF_finish": "7/2/2019",
-                    "jan_LTF_finish": "7/2/2019",
-                    "jan_LTF_duration": "365",
-                    "current_LTF": "0",
                     "activities": {
                         tasks: {
                             'task-1': { id: 'task-1', content: 'Learn Angular' },
@@ -98,10 +93,6 @@ class App extends React.Component {
                     "start_date": "8/03/2018",
                     "end_date": "18/12/2019",
                     "stage": "2",
-                    "dec_LTF_finish": "23/12/2019",
-                    "jan_LTF_finish": "23/12/2019",
-                    "jan_LTF_duration": "497",
-                    "current_LTF": "6",
                     "activities": {
                         tasks: {
                             'task-1': { id: 'task-1', content: 'Learn Angular' },
@@ -136,13 +127,67 @@ class App extends React.Component {
                 'Project Name', "Project Desc", "Lifeycle Type", "Start Date", "End Date", 
                 "Stage", "Activities", "Goals", "Escalation", "Action"
             ],
-        }    
-    }
-    
-    componentWillMount()  {
-        // this.renderTableData();
+        }   
+        
+        let formData = {
+            activities: {
+                tasks: {
+                    'task-1': { id: 'task-1', content: 'Learn Angular' },
+                    'task-2': { id: 'task-2', content: 'Learn React' },
+                    'task-3': { id: 'task-3', content: 'Learn Vue' },
+                    'task-4': { id: 'task-4', content: 'Learn Next' }
+                },
+                columns: { 
+                    'column-1': {
+                    id: 'column-1',
+                    title: 'Carry over',
+                    taskIds: ['task-1', 'task-2', 'task-3', 'task-4']
+                    },
+                    'column-2': {
+                    id: 'column-2',
+                    title: 'This week',
+                    taskIds: []
+                    },
+                    'column-3': {
+                    id: 'column-3',
+                    title: 'Next week',
+                    taskIds: []
+                    }
+                },
+                columnOrder: ['column-1', 'column-2', 'column-3']
+            },
+            "goals": "Something",
+            "escalation": "Management",
+            end_date: "4/11/2018",
+            escalation: "asdas",
+            goals: "assdsda",
+            lifeCycle_type: "Full",
+            project_desc: "sddssfdsfd",
+            project_name: "Mahesha",
+            stage: "2",
+            start_date: "4/11/2018",
+        }
+
+        console.log("previous state", this.state);
+        
+        
+        
+        console.log("current state", this.state);
     }
 
+    componentDidMount = () => {
+        console.log("component did mount");     
+    }
+
+    componentWillUpdate = () => {
+
+        console.log("component will update");     
+        this.setState({data: {...this.props.location.formData}});
+    }
+
+    componentWillUnmount = () => {
+        this.setState({data: []});
+    }
     removeProject (index) {
         const projects  = this.state.data;
         
@@ -150,6 +195,15 @@ class App extends React.Component {
             data: projects.filter((character, i) => { 
                 return i !== index;
             })
+        });
+    }
+
+    addProject(formData) {
+        alert("Adding an project");
+        console.log("Form data", formData);
+        
+        this.setState({
+            data: formData
         });
     }
 
@@ -173,7 +227,7 @@ class App extends React.Component {
 
                     </div> */}
                     <div className="col-md-12">
-                        <TableCompnent removeProject={this.removeProject} data={this.state && this.state.data} columns={this.state.columns} />
+                        <TableCompnent removeProject={this.removeProject} addProject={this.addProject} data={this.state && this.state.data} columns={this.state.columns} />
                     </div>
                 </div>
                 <FooterComponent />

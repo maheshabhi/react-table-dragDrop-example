@@ -13,12 +13,8 @@ class DragDropComponent extends React.Component {
     constructor(props) {
         // debugger;
         super(props)
-        
-        console.log("activities data", this.props.activities);
-        
     }
 
-    
     state =  this.props.activities;
 
     onDragEnd = result => {

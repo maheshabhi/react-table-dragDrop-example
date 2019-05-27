@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import TableHeader from './TableHeader.component';
-import Styled from 'styled-components';
-import DragDropComponent from '../drag/DragDrop.component';
+import React from 'react';
+import { withRouter  } from 'react-router-dom';
 
-import { withRouter  } from 'react-router-dom'
+import Styled from 'styled-components';
+
+import TableHeader from './TableHeader.component';
+import DragDropComponent from '../drag/DragDrop.component';
 
 const DeleteIcon = Styled.span`
     cursor: pointer;
@@ -47,13 +48,11 @@ class TableCompnent extends React.Component {
         super(props)
     }
 
-    
-
-
     onButtonClick(){
         let { history } = this.props;
         history.push({
-            pathname: '/users'
+            pathname: '/users',
+            addProject: this.props.addProject
         });
     }
 
@@ -67,7 +66,7 @@ class TableCompnent extends React.Component {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-12">
-                        <button className="btn btn-primary btn-add" onClick={this.onButtonClick.bind(this)}> Add Project</button>
+                        <button className="btn btn-primary btn-add"  onClick={this.onButtonClick.bind(this)}> Add Project</button>
                     </div>
                 </div>
                 <div className="row m-4">

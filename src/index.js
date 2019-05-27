@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom'
-import Users from './users';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import NotFoundComponent from './NotFoundComponent';
 import AddProject from './components/addProject.component';
 
