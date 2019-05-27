@@ -223,7 +223,7 @@ class AddProject extends React.Component {
             //     debugger;
             //     console.log(this.state.formControls[formField].value);
                 
-            // }
+            // }    
         let formData = {
             "project_name": this.state.formControls.name.value,
             "project_desc": this.state.formControls.desc.value,
@@ -240,19 +240,19 @@ class AddProject extends React.Component {
                 },
                 columns: { 
                     'column-1': {
-                    id: 'column-1',
-                    title: 'Carry over',
-                    taskIds: ['task-1', 'task-2', 'task-3', 'task-4']
+                        id: 'column-1',
+                        title: 'Carry over',
+                        taskIds: ['task-1', 'task-2', 'task-3', 'task-4']
                     },
                     'column-2': {
-                    id: 'column-2',
-                    title: 'This week',
-                    taskIds: []
+                        id: 'column-2',
+                        title: 'This week',
+                        taskIds: []
                     },
                     'column-3': {
-                    id: 'column-3',
-                    title: 'Next week',
-                    taskIds: []
+                        id: 'column-3',
+                        title: 'Next week',
+                        taskIds: []
                     }
                 },
                 columnOrder: ['column-1', 'column-2', 'column-3']
@@ -260,7 +260,7 @@ class AddProject extends React.Component {
             "goals": this.state.formControls.goals.value,
             "escalation": this.state.formControls.escalation.value,
         }
-
+ 
         let { history } = this.props;
         history.push({
             pathname: '/', 
@@ -309,7 +309,6 @@ class AddProject extends React.Component {
             <div>
                 <HeaderComponent />
                 <div className="container mt-4">
-                    
                     <div>
                         <div className="form-title">
                             <h3> Create a Project </h3> <br/>
@@ -341,7 +340,6 @@ class AddProject extends React.Component {
                                 </div>
                             </div>
 
-                           
                             <div className="row">
                                 <div className="col-md-4">
                                     <SelectInput name="stage" value={this.state.formControls.stage.value} label={this.state.formControls.stage.label}
@@ -406,7 +404,6 @@ class AddProject extends React.Component {
                                 </div>      
                             </div><br/><br/><br/><br/>
                         </form>
-                        <p>this.state.isFormvalid {this.state.isFormvalid}</p>
                     </div>
                 </div>
                 <FooterComponent />

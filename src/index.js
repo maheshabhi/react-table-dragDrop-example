@@ -11,7 +11,8 @@ const routing = (
     <Router>
         <div>
             <Switch>
-                <Route exact path="/" component={App}></Route>
+                <Route exact path="/" component={App}>
+                </Route>
                 <Route path="/users" component={AddProject}></Route>
                 <Route component={NotFoundComponent} />
             </Switch>

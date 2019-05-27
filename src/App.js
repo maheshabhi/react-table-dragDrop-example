@@ -8,10 +8,14 @@ class App extends React.Component {
     constructor(props) {
         super(props)
         // debugger;
-        console.log("updated props", props.location.formData)
+        // console.log("updated props", props.location.formData)
         this.removeProject = this.removeProject.bind(this);
         this.addProject = this.addProject.bind(this);
         
+        this.state = {
+            data: []
+        };
+
         this.state = {
             data: [
                 {
@@ -129,7 +133,81 @@ class App extends React.Component {
             ],
         }   
         
-        let formData = {
+        // let formData = {
+        //     activities: {
+        //         tasks: {
+        //             'task-1': { id: 'task-1', content: 'Learn Angular' },
+        //             'task-2': { id: 'task-2', content: 'Learn React' },
+        //             'task-3': { id: 'task-3', content: 'Learn Vue' },
+        //             'task-4': { id: 'task-4', content: 'Learn Next' }
+        //         },
+        //         columns: { 
+        //             'column-1': {
+        //             id: 'column-1',
+        //             title: 'Carry over',
+        //             taskIds: ['task-1', 'task-2', 'task-3', 'task-4']
+        //             },
+        //             'column-2': {
+        //             id: 'column-2',
+        //             title: 'This week',
+        //             taskIds: []
+        //             },
+        //             'column-3': {
+        //             id: 'column-3',
+        //             title: 'Next week',
+        //             taskIds: []
+        //             }
+        //         },
+        //         columnOrder: ['column-1', 'column-2', 'column-3']
+        //     },
+        //     "goals": "Something",
+        //     "escalation": "Management",
+        //     end_date: "4/11/2018",
+        //     escalation: "asdas",
+        //     goals: "assdsda",
+        //     lifeCycle_type: "Full",
+        //     project_desc: "sddssfdsfd",
+        //     project_name: "Mahesha",
+        //     stage: "2",
+        //     start_date: "4/11/2018",
+        // }
+
+        console.log("previous state", this.state);
+        
+        
+        
+        console.log("current state", this.state);
+    }
+
+    componentDidMount = () => {
+        console.log("component did mount");     
+    }
+
+    componentWillUpdate = () => {
+
+        console.log("component will update");     
+        this.setState({data: {...this.props.location.formData}});
+    }
+
+    componentWillUnmount = () => {
+        this.setState({data: []});
+        alert('unmounting');
+    }
+    removeProject (index) {
+        const projects  = this.state.data;
+        
+        this.setState({
+            data: projects.filter((character, i) => { 
+                return i !== index;
+            })
+        });
+    }
+
+    addProject(formData) {
+        alert("Adding an project");
+        console.log("Form data", formData);
+        
+        let updatedData = {
             activities: {
                 tasks: {
                     'task-1': { id: 'task-1', content: 'Learn Angular' },
@@ -166,44 +244,9 @@ class App extends React.Component {
             project_name: "Mahesha",
             stage: "2",
             start_date: "4/11/2018",
-        }
-
-        console.log("previous state", this.state);
-        
-        
-        
-        console.log("current state", this.state);
-    }
-
-    componentDidMount = () => {
-        console.log("component did mount");     
-    }
-
-    componentWillUpdate = () => {
-
-        console.log("component will update");     
-        this.setState({data: {...this.props.location.formData}});
-    }
-
-    componentWillUnmount = () => {
-        this.setState({data: []});
-    }
-    removeProject (index) {
-        const projects  = this.state.data;
-        
+        };
         this.setState({
-            data: projects.filter((character, i) => { 
-                return i !== index;
-            })
-        });
-    }
-
-    addProject(formData) {
-        alert("Adding an project");
-        console.log("Form data", formData);
-        
-        this.setState({
-            data: formData
+            data: updatedData
         });
     }
 
