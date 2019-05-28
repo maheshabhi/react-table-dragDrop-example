@@ -1,5 +1,4 @@
- const initalData = {
-    data: [
+ const initialData =  [
         {
             "project_name": "ESSSV",
             "project_desc": "esssv hybid electric HT- 1009005",
@@ -108,11 +107,6 @@
             "goals": "Something",
             "escalation": ""
         }
-    ],
-    columns : [
-        'Project Name', "Project Desc", "Lifeycle Type", "Start Date", "End Date", 
-        "Stage", "Activities", "Goals", "Escalation", "Action"
-    ],
-}   
+];   
 
-export default initalData;
+export default initialData;

@@ -7,6 +7,7 @@ import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import NotFoundComponent from './NotFoundComponent';
 import AddProject from './components/addProject.component';
 
+
 const routing = (
     <Router>
         <div>
@@ -20,6 +21,6 @@ const routing = (
     </Router>
 )
 
-
 ReactDOM.render(routing, document.getElementById('root'));
+
 
